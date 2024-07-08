@@ -43,14 +43,12 @@ export const columns: ColumnDef<Module>[] = [
           variant='ghost'
           onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
         >
-          targetTemperature
+          Target Temperature
           <ArrowUpDown className='w-4 h-4 ml-2' />
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className='lowercase'>{row.getValue('targetTemperature')}</div>
-    ),
+    cell: ({ row }) => <div>{row.getValue('targetTemperature')}&deg;C</div>,
   },
   {
     id: 'actions',
