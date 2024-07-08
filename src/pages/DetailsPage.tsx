@@ -18,9 +18,10 @@ const DetailsPage = () => {
 
   return (
     <div className='flex flex-col gap-2 md:justify-center'>
-      <Button variant='outline' size='icon'>
-        <Link to='/' className='flex'>
-          <ArrowLeft className='w-4 h-4' />
+      <Button variant='outline' size='default' className=' max-w-24'>
+        <Link to='/' className='flex items-center justify-center gap-1'>
+          <ArrowLeft className='w-4' />
+          Go Back
         </Link>
       </Button>
       {isLoading && <p>Loading...</p>}
