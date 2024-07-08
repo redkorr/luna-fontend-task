@@ -3,4 +3,5 @@ export interface Module {
   name: string;
   available: boolean;
   targetTemperature: number;
+  description?: string;
 }
