@@ -16,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './dropdown-menu';
+import RealTimeTemperature from '../RealTimeTemperature';
 
 export const columns: ColumnDef<Module>[] = [
   {
@@ -49,6 +50,15 @@ export const columns: ColumnDef<Module>[] = [
       );
     },
     cell: ({ row }) => <div>{row.getValue('targetTemperature')}&deg;C</div>,
+  },
+  {
+    accessorKey: 'temperatureNow',
+    header: 'Temperature Now',
+    cell: ({ row }) => (
+      <RealTimeTemperature
+        targetTemperature={row.getValue('targetTemperature')}
+      />
+    ),
   },
   {
     id: 'actions',
