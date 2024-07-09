@@ -1,5 +1,6 @@
 import { ModeToggle } from '@/components/ModeToggle';
 import ModuleForm from '@/components/ModuleForm';
+import RealTimeTemperature from '@/components/RealTimeTemperature';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import {
@@ -18,6 +19,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { useApi } from '@/hooks/useApi';
+import { cn } from '@/lib/utils';
 import { Module } from '@/types';
 import { AlertCircle, ArrowLeft, SquarePen } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -57,8 +59,22 @@ const DetailsPage = () => {
             <CardHeader>
               <div className='flex flex-col gap-2'>
                 <div className='flex-1'>
-                  <CardTitle className=''>{data.name}</CardTitle>
-                  <p className='text-2xl'>{data.targetTemperature}&deg;C</p>
+                  <CardTitle className='mb-2'>{data.name}</CardTitle>
+                  <div className='flex justify-center gap-4'>
+                    <div className='flex flex-col '>
+                      <span>Target temperature</span>
+                      <span className='text-2xl'>
+                        {data.targetTemperature}&deg;C
+                      </span>
+                    </div>
+                    <div className='flex flex-col'>
+                      <span>Temperature now</span>
+                      <RealTimeTemperature
+                        targetTemperature={data.targetTemperature}
+                        className='text-2xl'
+                      />
+                    </div>
+                  </div>
                 </div>
                 <CardDescription>{data.description}</CardDescription>
               </div>
@@ -66,11 +82,13 @@ const DetailsPage = () => {
             <CardContent>
               <div className='flex justify-around text-sm md:justify-center md:gap-8 text-muted-foreground'>
                 <div
-                  className={`flex items-center rounded-md px-3 py-2 font-medium md:w-40 justify-center ${
-                    data.available
-                      ? 'bg-green-500/10 text-green-500'
-                      : 'bg-red-500/10 text-red-500'
-                  }`}
+                  className={cn(
+                    {
+                      'bg-green-500/10 text-green-500': data.available,
+                      'bg-red-500/10 text-red-500': !data.available,
+                    },
+                    'flex items-center rounded-md px-3 py-2 font-medium md:w-40 justify-center'
+                  )}
                 >
                   {data.available ? 'Available' : 'Unavailable'}
                 </div>
