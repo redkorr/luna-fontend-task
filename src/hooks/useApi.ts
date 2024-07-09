@@ -12,7 +12,7 @@ export const useApi = <T>(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const fetchData = async () => {
+  const callApi = async () => {
     setIsLoading(true);
     try {
       const response: AxiosResponse<T> = await axios(
@@ -28,12 +28,21 @@ export const useApi = <T>(
     setIsLoading(false);
   };
 
+  // const patchData = async (data: ModuleForm) => {
+  //   try {
+  //     await axios.patch(`${BASE_URL}${url}`, data);
+  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   } catch (error: any) {
+  //     setError(error);
+  //   }
+  // };
+
   useEffect(() => {
     if (!shouldFetchOnMount) {
       return;
     }
-    fetchData();
+    callApi();
   }, []);
 
-  return { data, isLoading, error, fetchData };
+  return { data, isLoading, error, callApi };
 };

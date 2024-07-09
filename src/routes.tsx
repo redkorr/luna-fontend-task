@@ -15,8 +15,4 @@ export const ROUTES: Array<Route> = [
     path: '/:id',
     element: <DetailsPage />,
   },
-  // {
-  //   path: '/:id/history',
-  //   element: <ModuleHistoricalDataPage />,
-  // },
 ];
