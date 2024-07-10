@@ -19,7 +19,7 @@ describe('RealTimeTemperature component', () => {
       { temperature: 25, id: '1' },
       { temperature: 2, id: '2' },
     ]);
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for state to update
+    await new Promise((resolve) => setTimeout(resolve, 100));
   });
 
   afterAll(() => {

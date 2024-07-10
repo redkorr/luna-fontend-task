@@ -48,9 +48,7 @@ const DetailsPage = () => {
                   <div className='flex justify-center gap-4'>
                     <div className='flex flex-col '>
                       <span>Target temperature</span>
-                      <span className='text-2xl'>
-                        {data.targetTemperature}&deg;C
-                      </span>
+                      <p className='text-2xl'>{data.targetTemperature}&deg;C</p>
                     </div>
                     <div className='flex flex-col'>
                       <span>Temperature now</span>
@@ -68,6 +66,7 @@ const DetailsPage = () => {
             <CardContent>
               <div className='flex justify-around mb-3 text-sm md:justify-center md:gap-8 text-muted-foreground'>
                 <div
+                  data-testid='rl-temp-details'
                   className={cn(
                     {
                       'bg-green-500/10 text-green-500': data.available,

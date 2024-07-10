@@ -1,7 +1,7 @@
 import {
   Card,
   CardContent,
-  CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -43,13 +43,6 @@ export function ModuleChart() {
         <Card>
           <CardHeader className='flex flex-col gap-3'>
             <CardTitle>Temperature {historyMode}</CardTitle>
-            <CardDescription className='flex justify-around'>
-              <HistoryModeSelect
-                historyMode={historyMode}
-                setHistoryMode={setHistoryMode}
-              />
-              <DatePickerWithRange date={date} setDate={setDate} />
-            </CardDescription>
           </CardHeader>
           <CardContent>
             <ModuleGradientChart
@@ -60,6 +53,13 @@ export function ModuleChart() {
               xAxisKey='timestamp'
             />
           </CardContent>
+          <CardFooter className='flex flex-col items-center gap-2 md:justify-around md:flex-row'>
+            <HistoryModeSelect
+              historyMode={historyMode}
+              setHistoryMode={setHistoryMode}
+            />
+            <DatePickerWithRange date={date} setDate={setDate} />
+          </CardFooter>
         </Card>
       )}
     </>

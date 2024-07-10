@@ -17,12 +17,17 @@ import {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 import RealTimeTemperature from '../RealTimeTemperature';
+import { cn } from '@/lib/utils';
 
 export const columns: ColumnDef<Module>[] = [
   {
     accessorKey: 'name',
     header: () => <div className='text-left'>Name</div>,
-    cell: ({ row }) => <div className='text-left'>{row.getValue('name')}</div>,
+    cell: ({ row }) => (
+      <div className={cn(row.original.id, 'text-left')}>
+        {row.getValue('name')}
+      </div>
+    ),
   },
   {
     accessorKey: 'available',
@@ -77,7 +82,7 @@ export const columns: ColumnDef<Module>[] = [
       const module = row.original;
 
       return (
-        <DropdownMenu>
+        <DropdownMenu data-testid='actions-btn'>
           <DropdownMenuTrigger asChild>
             <Button variant='ghost' className='w-8 h-8 p-0'>
               <span className='sr-only'>Open menu</span>
