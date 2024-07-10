@@ -16,6 +16,9 @@ import { addDays } from 'date-fns';
 import ModuleGradientChart from './module-chart/ModuleGradientChart';
 import { buildModuleChartSearchParams } from '@/lib/buildModuleChartSearchParams';
 import HistoryModeSelect from './module-chart/HistoryModeSelect';
+import CsvDownloadButton from 'react-json-to-csv';
+import { Button } from './ui/button';
+import { FileDown } from 'lucide-react';
 
 export function ModuleChart() {
   const [historyMode, setHistoryMode] = useState<HistoryMode>('daily');
@@ -59,6 +62,10 @@ export function ModuleChart() {
               setHistoryMode={setHistoryMode}
             />
             <DatePickerWithRange date={date} setDate={setDate} />
+            <Button className='flex gap-2'>
+              <FileDown className='w-4 h-4' />
+              <CsvDownloadButton data={data} filename={`${id}-${new Date()}`} />
+            </Button>
           </CardFooter>
         </Card>
       )}

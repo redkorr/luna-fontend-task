@@ -2,6 +2,7 @@ import DetailsDialog from '@/components/detail/DetailsDialog';
 import { ModuleChart } from '@/components/ModuleChart';
 import Navigation from '@/components/Navigation';
 import RealTimeTemperature from '@/components/RealTimeTemperature';
+import Spinner from '@/components/Spinner';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import {
   Card,
@@ -30,9 +31,13 @@ const DetailsPage = () => {
   return (
     <div className='flex flex-col gap-2 md:items-center'>
       <Navigation withBackButton />
-      {isLoading && <p>Loading...</p>}
+      {isLoading && (
+        <div className='flex justify-center'>
+          <Spinner />
+        </div>
+      )}
       <div className='flex flex-col gap-2 md:max-w-[800px]'>
-        {!data?.available && (
+        {!data?.available && data && (
           <Alert variant='destructive'>
             <AlertCircle className='w-6 h-6' />
             <AlertTitle>Heads up!</AlertTitle>
@@ -91,7 +96,12 @@ const DetailsPage = () => {
         )}
       </div>
 
-      {error && <p>{error.message}</p>}
+      {error && (
+        <Alert variant='destructive'>
+          <AlertCircle className='w-6 h-6' />
+          <AlertTitle>{error.message}</AlertTitle>
+        </Alert>
+      )}
     </div>
   );
 };
