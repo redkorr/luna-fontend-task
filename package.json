@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
@@ -22,6 +23,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "jsdom": "^24.1.0",
     "lucide-react": "^0.402.0",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
@@ -29,12 +31,15 @@
     "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.24.1",
     "recharts": "^2.12.7",
+    "socket.io": "^4.7.5",
     "socket.io-client": "^4.7.5",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.3.1",
+    "@testing-library/react": "^16.0.0",
     "@types/node": "^20.14.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
