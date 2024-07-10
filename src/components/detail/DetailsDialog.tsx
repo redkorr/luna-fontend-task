@@ -22,20 +22,25 @@ const DetailsDialog = ({
   available,
 }: DetailsDialogProps) => {
   return (
-    <Dialog>
+    <Dialog data-testid='dialog'>
       <DialogTrigger asChild>
-        <Button disabled={!available} className='flex gap-1 md:w-40'>
+        <Button
+          disabled={!available}
+          className='flex gap-1 md:w-40'
+          data-testid='edit-btn'
+        >
           <SquarePen className='w-4 h-4' />
           <span>Edit</span>
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-[425px]'>
+      <DialogContent className='md:max-w-[425px] max-w-[350px]'>
         <DialogHeader>
           <DialogTitle>Edit profile</DialogTitle>
           <DialogDescription>
             Make changes to module here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
+
         <ModuleForm isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} />
       </DialogContent>
     </Dialog>
