@@ -1,6 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-// import { ModeToggle } from './components/ModeToggle';
 import { ThemeProvider } from './components/theme-provider';
 import { ROUTES } from './routes';
 
