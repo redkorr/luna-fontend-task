@@ -54,6 +54,8 @@ npm run test
 - Możliwość skopiowania id modułu
 - Pobieranie danych historycznych modułu w plikach `.csv`
 - Obsługa błędów i pustych stanów
+- Możliwość ukrywania kolumn w liście modułów
+- Filtrowanie listy modułów po nazwie
 
 ## Widoki aplikacji
 
