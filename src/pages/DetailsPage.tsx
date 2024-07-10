@@ -57,6 +57,7 @@ const DetailsPage = () => {
                       <RealTimeTemperature
                         targetTemperature={data.targetTemperature}
                         className='text-2xl'
+                        id={data.id}
                       />
                     </div>
                   </div>
