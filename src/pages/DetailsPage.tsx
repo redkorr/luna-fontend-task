@@ -1,8 +1,8 @@
-import { ModeToggle } from '@/components/ModeToggle';
-import ModuleForm from '@/components/ModuleForm';
+import DetailsDialog from '@/components/detail/DetailsDialog';
+import { ModuleChart } from '@/components/ModuleChart';
+import Navigation from '@/components/Navigation';
 import RealTimeTemperature from '@/components/RealTimeTemperature';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,20 +10,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
+
 import { useApi } from '@/hooks/useApi';
 import { cn } from '@/lib/utils';
 import { Module } from '@/types';
-import { AlertCircle, ArrowLeft, SquarePen } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const DetailsPage = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -35,16 +28,8 @@ const DetailsPage = () => {
   }, [isSubmitted]);
 
   return (
-    <div className='flex flex-col gap-2 md:justify-center'>
-      <div className='flex md:max-w-[800px] justify-between'>
-        <Button variant='outline' size='default' className=' max-w-24'>
-          <Link to='/' className='flex items-center justify-center gap-1'>
-            <ArrowLeft className='w-4' />
-            Go Back
-          </Link>
-        </Button>
-        <ModeToggle />
-      </div>
+    <div className='flex flex-col gap-2 md:items-center'>
+      <Navigation withBackButton />
       {isLoading && <p>Loading...</p>}
       <div className='flex flex-col gap-2 md:max-w-[800px]'>
         {!data?.available && (
@@ -80,7 +65,7 @@ const DetailsPage = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <div className='flex justify-around text-sm md:justify-center md:gap-8 text-muted-foreground'>
+              <div className='flex justify-around mb-3 text-sm md:justify-center md:gap-8 text-muted-foreground'>
                 <div
                   className={cn(
                     {
@@ -93,32 +78,14 @@ const DetailsPage = () => {
                   {data.available ? 'Available' : 'Unavailable'}
                 </div>
                 <div className='flex items-center rounded-md bg-secondary text-secondary-foreground'>
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button
-                        disabled={!data.available}
-                        className='flex gap-1 md:w-40'
-                      >
-                        <SquarePen className='w-4 h-4' />
-                        <span>Edit</span>
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className='sm:max-w-[425px]'>
-                      <DialogHeader>
-                        <DialogTitle>Edit profile</DialogTitle>
-                        <DialogDescription>
-                          Make changes to module here. Click save when you're
-                          done.
-                        </DialogDescription>
-                      </DialogHeader>
-                      <ModuleForm
-                        isSubmitted={isSubmitted}
-                        setIsSubmitted={setIsSubmitted}
-                      />
-                    </DialogContent>
-                  </Dialog>
+                  <DetailsDialog
+                    available={data.available}
+                    isSubmitted={isSubmitted}
+                    setIsSubmitted={setIsSubmitted}
+                  />
                 </div>
               </div>
+              <ModuleChart />
             </CardContent>
           </Card>
         )}

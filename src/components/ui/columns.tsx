@@ -21,13 +21,14 @@ import RealTimeTemperature from '../RealTimeTemperature';
 export const columns: ColumnDef<Module>[] = [
   {
     accessorKey: 'name',
-    header: 'Name',
+    header: () => <div className='text-left'>Name</div>,
+    cell: ({ row }) => <div className='text-left'>{row.getValue('name')}</div>,
   },
   {
     accessorKey: 'available',
-    header: 'Available',
+    header: () => <div className='text-center'>Available</div>,
     cell: ({ row }) => (
-      <div className='capitalize'>
+      <div className='flex justify-center capitalize'>
         {row.getValue('available') ? (
           <CircleCheck className='text-green-600' />
         ) : (
@@ -40,27 +41,35 @@ export const columns: ColumnDef<Module>[] = [
     accessorKey: 'targetTemperature',
     header: ({ column }) => {
       return (
-        <Button
-          variant='ghost'
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Target Temperature
-          <ArrowUpDown className='w-4 h-4 ml-2' />
-        </Button>
+        <div className='flex justify-end'>
+          <Button
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Target Temperature
+            <ArrowUpDown className='w-4 h-4 ml-2' />
+          </Button>
+        </div>
       );
     },
-    cell: ({ row }) => <div>{row.getValue('targetTemperature')}&deg;C</div>,
+    cell: ({ row }) => (
+      <div className='text-right'>
+        {row.getValue('targetTemperature')}&deg;C
+      </div>
+    ),
   },
   {
     accessorKey: 'temperatureNow',
-    header: 'Temperature Now',
+    header: () => <div className='text-right'>Temperature Now</div>,
     cell: ({ row }) => (
       <RealTimeTemperature
+        className='text-right'
         targetTemperature={row.getValue('targetTemperature')}
       />
     ),
   },
   {
+    header: () => <div className='text-center'>Actions</div>,
     id: 'actions',
     enableHiding: false,
     cell: ({ row }) => {

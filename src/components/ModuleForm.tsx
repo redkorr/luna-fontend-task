@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import { Module } from '@/types';
 import { Textarea } from './ui/textarea';
 import { DialogClose } from '@radix-ui/react-dialog';
+import { removeEmptyFieldsFromModule } from '@/lib/removeEmptyFieldsFromModule';
 
 export const ModuleSchema: ZodType<Partial<Module>> = z.object({
   name: z.optional(z.string()),
@@ -36,42 +37,30 @@ interface ModuleFormProps {
 
 const ModuleForm = ({ isSubmitted, setIsSubmitted }: ModuleFormProps) => {
   const [formData, setFormData] = useState<Partial<Module>>({});
-
   const { id } = useParams();
   const { callApi } = useApi(
     `/modules/${id}`,
     { method: 'PATCH', data: formData },
     false
   );
+
   const form = useForm({
     resolver: zodResolver(ModuleSchema),
   });
 
   useEffect(() => {
-    if (isSubmitted) {
-      console.log('formDataChanged');
-      callApi();
-      setIsSubmitted(false);
-    }
+    if (!isSubmitted) return;
+
+    callApi();
+    setIsSubmitted(false);
   }, [formData, isSubmitted]);
 
-  function removeEmptyFields(data: Partial<Module>) {
-    Object.keys(data).forEach((key) => {
-      if (
-        data[key as keyof typeof data] === '' ||
-        data[key as keyof typeof data] == null
-      ) {
-        delete data[key as keyof typeof data];
-      }
-    });
-  }
-
   const onSubmit: SubmitHandler<Partial<Module>> = (data) => {
-    removeEmptyFields(data);
+    removeEmptyFieldsFromModule(data);
     setFormData(data);
     setIsSubmitted(true);
   };
-  console.log(form.formState.touchedFields);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>

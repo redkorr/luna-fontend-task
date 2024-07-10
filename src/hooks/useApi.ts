@@ -27,16 +27,6 @@ export const useApi = <T>(
 
     setIsLoading(false);
   };
-
-  // const patchData = async (data: ModuleForm) => {
-  //   try {
-  //     await axios.patch(`${BASE_URL}${url}`, data);
-  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   } catch (error: any) {
-  //     setError(error);
-  //   }
-  // };
-
   useEffect(() => {
     if (!shouldFetchOnMount) {
       return;

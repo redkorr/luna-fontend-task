@@ -41,7 +41,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className='border rounded-md'>
+    <div className='flex justify-center w-full border rounded-md max-w-[800px]'>
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (

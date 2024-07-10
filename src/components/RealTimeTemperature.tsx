@@ -1,3 +1,4 @@
+import { isInRange as isTemeratureInRange } from '@/lib/isInRange';
 import { cn } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
@@ -12,6 +13,9 @@ const RealTimeTemperature = ({
   className,
 }: RealTimeTemperatureProps) => {
   const [temp, setTemp] = useState<number>(0);
+
+  const isInRange = isTemeratureInRange(temp, targetTemperature, 0.5);
+
   useEffect(() => {
     const socket = io('http://localhost:3001');
     socket.connect();
@@ -25,18 +29,16 @@ const RealTimeTemperature = ({
     };
   }, []);
 
-  const isInRange = Math.abs(temp - targetTemperature) <= 0.5;
-
   return (
     <>
-      <span
+      <div
         className={cn(
           { 'text-green-500': isInRange, 'text-red-500': !isInRange },
           className
         )}
       >
         {temp}&deg;C
-      </span>
+      </div>
     </>
   );
 };
