@@ -65,6 +65,7 @@ export const columns: ColumnDef<Module>[] = [
       <RealTimeTemperature
         className='text-right'
         targetTemperature={row.getValue('targetTemperature')}
+        id={row.original.id}
       />
     ),
   },
