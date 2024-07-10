@@ -55,13 +55,17 @@ const DetailsPage = () => {
                       <span>Target temperature</span>
                       <p className='text-2xl'>{data.targetTemperature}&deg;C</p>
                     </div>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col items-center'>
                       <span>Temperature now</span>
-                      <RealTimeTemperature
-                        targetTemperature={data.targetTemperature}
-                        className='text-2xl'
-                        id={data.id}
-                      />
+                      {data.available ? (
+                        <RealTimeTemperature
+                          targetTemperature={data.targetTemperature}
+                          className='text-2xl'
+                          id={data.id}
+                        />
+                      ) : (
+                        <div className='text-2xl '>No data</div>
+                      )}
                     </div>
                   </div>
                 </div>

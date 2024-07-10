@@ -66,13 +66,19 @@ export const columns: ColumnDef<Module>[] = [
   {
     accessorKey: 'temperatureNow',
     header: () => <div className='text-right'>Temperature Now</div>,
-    cell: ({ row }) => (
-      <RealTimeTemperature
-        className='text-right'
-        targetTemperature={row.getValue('targetTemperature')}
-        id={row.original.id}
-      />
-    ),
+    cell: ({ row }) => {
+      return row.original.available ? (
+        <RealTimeTemperature
+          className='text-right'
+          targetTemperature={row.getValue('targetTemperature')}
+          id={row.original.id}
+        />
+      ) : (
+        <div className='flex justify-end'>
+          <CircleX className='text-red-600' />
+        </div>
+      );
+    },
   },
   {
     header: () => <div className='text-center'>Actions</div>,
