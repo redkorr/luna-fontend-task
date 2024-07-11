@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -35,10 +34,7 @@ const DetailsDialog = ({
       </DialogTrigger>
       <DialogContent className='md:max-w-[425px] max-w-[350px]'>
         <DialogHeader>
-          <DialogTitle>Edit profile</DialogTitle>
-          <DialogDescription>
-            Make changes to module here. Click save when you're done.
-          </DialogDescription>
+          <DialogTitle>Edit module</DialogTitle>
         </DialogHeader>
 
         <ModuleForm isSubmitted={isSubmitted} setIsSubmitted={setIsSubmitted} />

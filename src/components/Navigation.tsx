@@ -3,12 +3,19 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { ModeToggle } from './ModeToggle';
 import { cn } from '@/lib/utils';
+import AddModuleButton from './AddModuleButton';
 
 interface NavigationProps {
   withBackButton?: boolean;
+  isSubmitted?: boolean;
+  setIsSubmitted?: (arg: boolean) => void;
 }
 
-const Navigation = ({ withBackButton = false }: NavigationProps) => {
+const Navigation = ({
+  withBackButton = false,
+  isSubmitted,
+  setIsSubmitted,
+}: NavigationProps) => {
   return (
     <div
       className={cn(
@@ -29,7 +36,15 @@ const Navigation = ({ withBackButton = false }: NavigationProps) => {
           </Link>
         </Button>
       )}
-      <ModeToggle />
+      <div className='flex gap-2'>
+        {isSubmitted != null && setIsSubmitted && (
+          <AddModuleButton
+            isSubmitted={isSubmitted}
+            setIsSubmitted={setIsSubmitted}
+          />
+        )}
+        <ModeToggle />
+      </div>
     </div>
   );
 };

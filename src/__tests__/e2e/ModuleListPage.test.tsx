@@ -41,9 +41,9 @@ describe('DetailsPage component', () => {
       </BrowserRouter>
     );
 
-    expect(wrapper.getByText('Test Module 1')).toBeTruthy();
+    expect(wrapper.getAllByText('Test Module 1')).toBeTruthy();
 
-    expect(wrapper.getByText('Test Module 2')).toBeTruthy();
+    expect(wrapper.getAllByText('Test Module 2')).toBeTruthy();
 
     wrapper.unmount();
   });
