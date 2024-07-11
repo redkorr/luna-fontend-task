@@ -1,4 +1,4 @@
-# Zadanie rekrutacyjne: aplikację do zarządzania modułami IoT
+# Zadanie rekrutacyjne: aplikacja do zarządzania modułami IoT
 
 Ta aplikacja frontend do [zadania rekrutacyjnego](https://gitlab.com/piotrdurniat/recruitment-luna)
 
@@ -56,6 +56,12 @@ npm run test
 - Obsługa błędów i pustych stanów
 - Możliwość ukrywania kolumn w liście modułów
 - Filtrowanie listy modułów po nazwie
+- Dodawanie modułów z poziomu listy
+- Inny layout dla mobilnej listy modułów
+
+## Potencjalne usprawnienia
+
+- Dodanie state managera by uniknąć `prop drilling`
 
 ## Widoki aplikacji
 
@@ -67,8 +73,18 @@ npm run test
 
 ![desktop-3](./public/screenshots/desktop-3.png)
 
+![desktop-4](./public/screenshots/desktop-4.png)
+
+![desktop-5](./public/screenshots/desktop-5.png)
+
 ### Mobile
+
+![mobile-1](./public/screenshots/mobile-1.png)
 
 ![mobile-2](./public/screenshots/mobile-2.png)
 
 ![mobile-3](./public/screenshots/mobile-3.png)
+
+![mobile-4](./public/screenshots/mobile-4.png)
+
+![mobile-5](./public/screenshots/mobile-5.png)
