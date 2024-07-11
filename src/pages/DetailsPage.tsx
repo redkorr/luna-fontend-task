@@ -1,4 +1,4 @@
-import DetailsDialog from '@/components/detail/DetailsDialog';
+import DetailsDialog from '@/components/details-page/DetailsDialog';
 import { ModuleChart } from '@/components/ModuleChart';
 import Navigation from '@/components/Navigation';
 import RealTimeTemperature from '@/components/RealTimeTemperature';

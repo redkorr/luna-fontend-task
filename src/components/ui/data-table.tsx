@@ -61,7 +61,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className='flex justify-center w-full border rounded-md max-w-[800px] flex-col'>
-      <div className='flex flex-row justify-between'>
+      <div className='flex flex-row justify-between mb-2'>
         <Input
           placeholder='Filter module names...'
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
